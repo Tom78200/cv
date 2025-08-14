@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0A1E36; /* Fond principal */
+  --color-bg-secondary: #1F345B; /* Fond secondaire */
+  --color-accent: #4A90E2; /* Accent principal */
+  --color-text: #F5F5F7; /* Texte principal */
+  --color-accent-2: #6EE7F9; /* Accent secondaire */
+
+  --radius-lg: 16px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-bg text-[var(--color-text)] antialiased overflow-x-hidden;
+}
+
+/* Cache les scrollbars (l’animation GSAP gère la progression) */
+html, body {
+  scrollbar-width: none;
+}
+* { scrollbar-width: none; }
+*::-webkit-scrollbar { display: none; }
+
+/* Light theme overrides */
+:root[data-theme="light"] {
+  --color-bg: #F5F5F7;
+  --color-bg-secondary: #E8EEF8;
+  --color-accent: #4A90E2;
+  --color-text: #0A1E36;
+  --color-accent-2: #0CB8D4;
+}
+
+/* Smooth theme transitions */
+* {
+  transition-property: background-color, color, border-color, fill, stroke, box-shadow, text-shadow;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Glassmorphism utility */
+.glass {
+  @apply bg-white/10 dark:bg-black/10 backdrop-blur-xl border border-white/10 dark:border-white/5;
+}
+
+/* Section base padding */
+.section {
+  @apply min-h-[100svh] py-24 md:py-32 px-6 md:px-12; 
+}
+
+/* Désactivation visuelle des scrollbars partout (navigation gérée en horizontal) */
+
+/* Parallax container helper */
+.parallax-layer {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
