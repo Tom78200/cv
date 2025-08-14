@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useLayoutEffect } from 'react'
+import { useRef, useState, useLayoutEffect } from 'react'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import ScrollToPlugin from 'gsap/ScrollToPlugin'
@@ -13,7 +13,7 @@ type Props = {
 export default function HorizontalScroll({ children, sectionIds }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const trackRef = useRef<HTMLDivElement | null>(null)
-  const [activeId, setActiveId] = useState(sectionIds[0] || 'hero')
+  const [, setActiveId] = useState(sectionIds[0] || 'hero')
 
   useLayoutEffect(() => {
     if (!containerRef.current || !trackRef.current) return

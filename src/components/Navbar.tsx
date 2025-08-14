@@ -14,7 +14,7 @@ const sections = [
 export default function Navbar() {
   const [active, setActive] = useState('hero')
   const [menuOpen, setMenuOpen] = useState(false)
-  const [activeId, setActiveId] = useState<string>('hero')
+  const [, setActiveId] = useState<string>('hero')
 
   useEffect(() => {
     const onActive = (e: Event) => setActiveId((e as CustomEvent<string>).detail)
