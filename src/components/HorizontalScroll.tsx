@@ -86,13 +86,13 @@ export default function HorizontalScroll({ children, sectionIds }: Props) {
         const dx = ev.touches[0].clientX - touchStartX
         const dy = ev.touches[0].clientY - touchStartY
         // N'intercepte qu'un geste clairement horizontal
-        if (Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy)) {
+        if (Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy)) {
           ev.preventDefault()
           const vw = Math.max(1, window.innerWidth)
           const delta = -dx / vw
           const nextProgress = Math.min(1, Math.max(0, startProgress + delta))
           const y = containerRef.current!.offsetTop + getTotal() * nextProgress
-          gsap.set(window, { scrollTo: y })
+          gsap.to(window, { scrollTo: y, duration: 0, overwrite: true, ease: 'none' })
         }
       }
       const onTouchEnd = () => {
@@ -131,7 +131,7 @@ export default function HorizontalScroll({ children, sectionIds }: Props) {
   }, [sectionIds])
 
   return (
-    <div ref={containerRef} className="relative h-[100svh] overflow-hidden">
+    <div ref={containerRef} className="relative h-[100svh] overflow-hidden touch-pan-x">
       <div ref={trackRef} className="absolute inset-0 flex will-change-transform">
         {children}
       </div>

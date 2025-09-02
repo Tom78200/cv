@@ -18,6 +18,12 @@ body {
   @apply bg-bg text-[var(--color-text)] antialiased overflow-x-hidden;
 }
 
+/* Autoriser le geste horizontal natif 
+   (classe utilitaire utilisée sur le container GSAP) */
+.touch-pan-x {
+  touch-action: pan-x;
+}
+
 /* Cache les scrollbars (l’animation GSAP gère la progression) */
 html, body {
   scrollbar-width: none;
