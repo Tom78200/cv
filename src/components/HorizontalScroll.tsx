@@ -70,34 +70,36 @@ export default function HorizontalScroll({ children, sectionIds }: Props) {
       }
       window.addEventListener('resize', onResize)
 
-      // Touch swipe support for horizontal navigation
+      // Touch swipe: follow finger + snap to nearest panel
       let touchStartX = 0
       let touchStartY = 0
+      let startProgress = 0
       let isTouching = false
       const onTouchStart = (ev: TouchEvent) => {
         isTouching = true
         touchStartX = ev.touches[0].clientX
         touchStartY = ev.touches[0].clientY
+        startProgress = st.progress
       }
       const onTouchMove = (ev: TouchEvent) => {
         if (!isTouching) return
         const dx = ev.touches[0].clientX - touchStartX
         const dy = ev.touches[0].clientY - touchStartY
-        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 30) {
+        if (Math.abs(dx) > Math.abs(dy)) {
           ev.preventDefault()
+          const vw = window.innerWidth || 1
+          const delta = -dx / vw // swipe left moves forward
+          const nextProgress = Math.min(1, Math.max(0, startProgress + delta))
+          const y = containerRef.current!.offsetTop + getTotal() * nextProgress
+          gsap.to(window, { scrollTo: y, duration: 0, ease: 'none' })
         }
       }
       const onTouchEnd = (ev: TouchEvent) => {
         if (!isTouching) return
-        const dx = (ev.changedTouches?.[0]?.clientX ?? touchStartX) - touchStartX
-        const threshold = 50
         const progress = st.progress
-        const currentIndex = Math.round(progress * (sections.length - 1))
-        let targetIndex = currentIndex
-        if (dx < -threshold) targetIndex = Math.min(sections.length - 1, currentIndex + 1)
-        else if (dx > threshold) targetIndex = Math.max(0, currentIndex - 1)
-        const y = containerRef.current!.offsetTop + (getTotal() * (targetIndex / Math.max(1, sections.length - 1)))
-        gsap.to(window, { scrollTo: y, duration: 0.45, ease: 'power2.out' })
+        const nearestIndex = Math.round(progress * (sections.length - 1))
+        const y = containerRef.current!.offsetTop + (getTotal() * (nearestIndex / Math.max(1, sections.length - 1)))
+        gsap.to(window, { scrollTo: y, duration: 0.35, ease: 'power2.out' })
         isTouching = false
       }
       const el = containerRef.current!
