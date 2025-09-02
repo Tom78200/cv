@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Navbar from './components/Navbar'
+import { LanguageProvider } from './context/LanguageContext'
 import ScrollEffects from './components/ScrollEffects'
 import HorizontalScroll from './components/HorizontalScroll'
 import CursorAura from './components/CursorAura'
@@ -20,14 +21,15 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-bg text-[color:var(--color-text)]">
-        <Navbar />
-        <CursorAura />
-        <ProgressBar />
-        <AnimatePresence mode="wait">
-          <main>
-            <ScrollEffects />
-            <HorizontalScroll sectionIds={["hero","about","xp","skills","contact"]}>
+      <LanguageProvider>
+        <div className="min-h-screen bg-bg text-[color:var(--color-text)]">
+          <Navbar />
+          <CursorAura />
+          <ProgressBar />
+          <AnimatePresence mode="wait">
+            <main>
+              <ScrollEffects />
+              <HorizontalScroll sectionIds={["hero","about","xp","skills","contact"]}>
               <section id="hero" className="min-w-[100vw] h-[100svh] flex-shrink-0 overflow-hidden">
                 <Hero />
               </section>
@@ -43,10 +45,11 @@ function App() {
               <section id="contact" className="min-w-[100vw] h-[100svh] flex-shrink-0 overflow-hidden">
                 <Contact />
               </section>
-            </HorizontalScroll>
-          </main>
-        </AnimatePresence>
-      </div>
+              </HorizontalScroll>
+            </main>
+          </AnimatePresence>
+        </div>
+      </LanguageProvider>
     </BrowserRouter>
   )
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { FiMenu, FiX } from 'react-icons/fi'
+import { FiMenu, FiX, FiChevronDown } from 'react-icons/fi'
+import { useLanguage } from '../context/LanguageContext'
 // Communique avec HorizontalScroll via CustomEvents
 
 const sections = [
@@ -15,6 +16,8 @@ export default function Navbar() {
   const [active, setActive] = useState('hero')
   const [menuOpen, setMenuOpen] = useState(false)
   const [, setActiveId] = useState<string>('hero')
+  const { language, setLanguage } = useLanguage()
+  const [langOpen, setLangOpen] = useState(false)
 
   useEffect(() => {
     const onActive = (e: Event) => setActiveId((e as CustomEvent<string>).detail)
@@ -72,6 +75,36 @@ export default function Navbar() {
                 {s.label}
               </button>
             ))}
+            <div className="relative">
+              <button
+                onClick={() => setLangOpen((v) => !v)}
+                className="px-3 py-2 rounded-xl text-[var(--color-text)]/80 hover:text-[var(--color-text)] inline-flex items-center gap-1"
+                aria-haspopup="listbox"
+                aria-expanded={langOpen}
+              >
+                {language === 'fr' ? 'Français' : 'English'} <FiChevronDown />
+              </button>
+              {langOpen && (
+                <div className="absolute right-0 mt-2 w-40 bg-[var(--color-bg-secondary)]/80 backdrop-blur-md rounded-xl border border-white/10 shadow-xl overflow-hidden" role="listbox">
+                  <button
+                    role="option"
+                    aria-selected={language === 'fr'}
+                    className={`block w-full text-left px-3 py-2 hover:bg-white/10 ${language === 'fr' ? 'text-[var(--color-accent)]' : 'text-[var(--color-text)]/80'}`}
+                    onClick={() => { setLanguage('fr'); setLangOpen(false) }}
+                  >
+                    Français
+                  </button>
+                  <button
+                    role="option"
+                    aria-selected={language === 'en'}
+                    className={`block w-full text-left px-3 py-2 hover:bg-white/10 ${language === 'en' ? 'text-[var(--color-accent)]' : 'text-[var(--color-text)]/80'}`}
+                    onClick={() => { setLanguage('en'); setLangOpen(false) }}
+                  >
+                    English
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
 
           <button className="md:hidden p-2" onClick={() => setMenuOpen((m) => !m)}>
@@ -100,8 +133,38 @@ export default function Navbar() {
                   {s.label}
                 </button>
               ))}
-
-              
+              <div className="pt-2">
+                <div className="relative">
+                  <button
+                    onClick={() => setLangOpen((v) => !v)}
+                    className="px-3 py-2 rounded-xl text-[var(--color-text)]/80 hover:text-[var(--color-text)] inline-flex items-center gap-1"
+                    aria-haspopup="listbox"
+                    aria-expanded={langOpen}
+                  >
+                    {language === 'fr' ? 'Français' : 'English'} <FiChevronDown />
+                  </button>
+                  {langOpen && (
+                    <div className="absolute left-0 mt-2 w-40 bg-[var(--color-bg-secondary)]/80 backdrop-blur-md rounded-xl border border-white/10 shadow-xl overflow-hidden" role="listbox">
+                      <button
+                        role="option"
+                        aria-selected={language === 'fr'}
+                        className={`block w-full text-left px-3 py-2 hover:bg-white/10 ${language === 'fr' ? 'text-[var(--color-accent)]' : 'text-[var(--color-text)]/80'}`}
+                        onClick={() => { setLanguage('fr'); setLangOpen(false) }}
+                      >
+                        Français
+                      </button>
+                      <button
+                        role="option"
+                        aria-selected={language === 'en'}
+                        className={`block w-full text-left px-3 py-2 hover:bg-white/10 ${language === 'en' ? 'text-[var(--color-accent)]' : 'text-[var(--color-text)]/80'}`}
+                        onClick={() => { setLanguage('en'); setLangOpen(false) }}
+                      >
+                        English
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
           </motion.div>
         )}
