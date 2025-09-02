@@ -32,72 +32,9 @@ function useData(lang: 'fr' | 'en') {
   }
 }
 
-const experienceEntries: Entry[] = [
-  {
-    id: 'e-webtris',
-    date: '2025 → présent',
-    title: 'Fondateur',
-    company: 'Webtris',
-    description:
-      "Entreprise vendant des solutions Web3 (plateformes, dApps, intégrations NFT), accompagnement de marques et artistes pour des expériences immersives. Lancement officiel prévu octobre 2025.",
-    tags: ['Web3', 'Solidity', 'Solana', 'React', 'Node.js'],
-  },
-  {
-    id: 'e-prodware',
-    date: 'Jan. 2023 → Juin 2023',
-    title: 'Développeur Junior',
-    company: 'Prodware',
-    description:
-      "Développement et maintenance d'applications internes. Participation à la conception de solutions web et gestion de bases de données.",
-    tags: ['Full Stack', 'SQL', 'React', 'Node.js'],
-  },
-]
+// Experience list now in i18n data
 
-const educationEntries: Entry[] = [
-  {
-    id: 'f-wf3',
-    date: '2023 → 2024',
-    title: 'Licence Informatique',
-    company: 'WebForce3',
-    description:
-      "Parcours axé développement web et logiciels, avec projets d'application mobile et web. Bonnes pratiques (performance, accessibilité).",
-    tags: ['Formation', 'Web', 'Licence'],
-  },
-  {
-    id: 'f-oc',
-    date: '2022 → 2023',
-    title: 'Bac +2 Full Stack Developer',
-    company: 'OpenClassrooms',
-    description:
-      'Création de sites web, gestion du back-end et mise en place/usage de bases de données.',
-    tags: ['Formation', 'React', 'Node.js', 'Express', 'Bases de données'],
-  },
-  {
-    id: 'f-alchemy',
-    date: '2025',
-    title: 'Formation Web3',
-    company: 'Alchemy University',
-    description:
-      'Blockchain, smart contracts, Solidity, Solana; bonnes pratiques de sécurité et déploiements.',
-    tags: ['Formation', 'Web3', 'Solidity', 'Solana'],
-  },
-  {
-    id: 'f-fcc',
-    date: '2025',
-    title: 'Développement Web',
-    company: 'freeCodeCamp',
-    description:
-      'Création de sites web, gestion du back-end et mise en place/usage de bases de données.',
-    tags: ['Formation', 'JavaScript', 'Frontend', 'Backend', 'Base de données'],
-  },
-]
-
-const projects: Project[] = [
-  { id: 'p-webtris', title: 'Webtris', description: "Plateforme artistique Web3 (art, littérature) avec intégration blockchain.", tag: 'Web3' },
-  { id: 'p-dapp', title: 'dApp NFT', description: 'Smart contracts, mint et marketplace légère.', tag: 'Web3' },
-  { id: 'p-dashboard', title: 'Dashboard Blockchain', description: 'Visualisation des métriques on-chain.', tag: 'UI' },
-  { id: 'p-fullstack', title: 'API + Front', description: 'Stack React/Node avec sécurité et auth.', tag: 'Full Stack' },
-]
+// Entries and projects are now provided via i18n data
 
 const filters = ['Tous', 'Web3', 'UI', 'Full Stack'] as const
 
