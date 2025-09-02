@@ -17,10 +17,10 @@ export default function Contact() {
   return (
     <div className="section overflow-hidden">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-5xl font-bold">{t.contact.title}</h2>
-        <p className="mt-2 text-white/70">{t.contact.summary}</p>
+        <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold">{t.contact.title}</h2>
+        <p className="mt-2 text-white/70 text-sm sm:text-base">{t.contact.summary}</p>
 
-        <div className="mt-8 flex items-center gap-4">
+        <div className="mt-6 sm:mt-8 flex items-center gap-3 sm:gap-4 flex-wrap">
           {links.map(({ Icon, href, label }, i) => (
             <motion.a
               key={i}

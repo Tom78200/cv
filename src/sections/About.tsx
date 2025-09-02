@@ -8,14 +8,14 @@ export default function About() {
     <div className="section relative">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(60%_60%_at_70%_10%,rgba(78,145,226,0.15),transparent_60%)]" />
 
-      <div className="max-w-5xl mx-auto grid md:grid-cols-5 gap-10 items-center">
+      <div className="max-w-5xl mx-auto grid md:grid-cols-5 gap-6 sm:gap-10 items-center">
         <div className="md:col-span-3 overflow-hidden">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ amount: 0.3 }}
             transition={{ duration: 0.6 }}
-            className="text-3xl md:text-5xl font-bold"
+            className="text-2xl sm:text-4xl md:text-5xl font-bold"
           >
             {strings[language].about.title}
           </motion.h2>
@@ -27,7 +27,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ amount: 0.3 }}
               transition={{ duration: 0.5, delay: idx * 0.05 }}
-              className="mt-6 text-white/80 leading-relaxed text-lg"
+              className="mt-4 sm:mt-6 text-white/80 leading-relaxed text-base sm:text-lg"
             >
               {para}
             </motion.p>

@@ -186,7 +186,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl font-extrabold tracking-tight drop-shadow-[0_0_25px_rgba(74,144,226,0.35)]"
+          className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight drop-shadow-[0_0_25px_rgba(74,144,226,0.35)]"
         >
           <Typewriter text="Tom Cottu" className="text-[var(--color-accent)]" />
           <br />
@@ -198,7 +198,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mt-6 text-lg text-white/80 min-h-[2ch]"
+          className="mt-4 text-sm sm:text-base text-white/80 min-h-[2ch]"
         >
           {slogans[index]}
         </motion.p>
@@ -208,7 +208,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="flex justify-center gap-12 mt-8"
+          className="flex justify-center gap-6 sm:gap-10 mt-6"
         >
           {[{ label: strings[language].hero.statsYears, value: 4, suffix: '+' }, { label: strings[language].hero.statsTechs, value: 15, suffix: '+' }].map((stat, i) => (
             <motion.div
@@ -218,10 +218,10 @@ export default function Hero() {
               transition={{ delay: 0.8 + i * 0.1, type: "spring" }}
               className="text-center"
             >
-              <div className="text-2xl md:text-3xl font-bold text-[var(--color-accent)]">
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold text-[var(--color-accent)]">
                 {stat.value}{stat.suffix}
               </div>
-              <div className="text-sm text-white/60">{stat.label}</div>
+              <div className="text-xs sm:text-sm text-white/60">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>
@@ -232,7 +232,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2"
       >
         <motion.div
           animate={{ x: [0, 10, 0] }}

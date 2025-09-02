@@ -38,9 +38,9 @@ export default function Skills() {
     <div className="section relative overflow-hidden">
 
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-5xl font-bold">{strings[language].skills.title}</h2>
+        <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold">{strings[language].skills.title}</h2>
 
-        <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="mt-6 sm:mt-10 grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
           {skills.map((s, i) => (
             <motion.button
               key={s.name}
@@ -50,10 +50,10 @@ export default function Skills() {
               transition={{ delay: i * 0.04 }}
               whileHover={{ y: -4, scale: 1.03 }}
               onClick={() => setSelected(s)}
-              className="glass p-4 rounded-2xl flex flex-col items-center gap-2 text-center hover:shadow-[0_0_30px_rgba(74,144,226,0.18)]"
+              className="glass p-3 sm:p-4 rounded-2xl flex flex-col items-center gap-1.5 sm:gap-2 text-center hover:shadow-[0_0_30px_rgba(74,144,226,0.18)]"
             >
-              <s.Icon className="w-7 h-7 text-[var(--color-accent)]" />
-              <span className="text-sm">{s.name}</span>
+              <s.Icon className="w-6 h-6 sm:w-7 sm:h-7 text-[var(--color-accent)]" />
+              <span className="text-xs sm:text-sm">{s.name}</span>
             </motion.button>
           ))}
         </div>
@@ -76,7 +76,7 @@ export default function Skills() {
                 animate={{ scale: 1, y: 0, opacity: 1 }}
                 exit={{ scale: 0.95, y: 10, opacity: 0 }}
                 transition={{ type: 'spring', stiffness: 260, damping: 22 }}
-                className="glass relative max-w-2xl w-[92%] md:w-[70%] p-6 rounded-2xl overflow-hidden"
+                className="glass relative max-w-2xl w-[92%] md:w-[70%] p-4 sm:p-6 rounded-2xl overflow-hidden"
                 role="dialog"
                 aria-modal="true"
                 onClick={(e) => e.stopPropagation()}
@@ -88,12 +88,12 @@ export default function Skills() {
                 >
                   <FiX className="w-5 h-5" />
                 </button>
-                <div className="flex items-center gap-3 pr-8">
-                  <selected.Icon className="w-6 h-6 text-[var(--color-accent)]" />
-                  <p className="font-semibold">{strings[language].skills.exampleWith} {selected.name}</p>
+                <div className="flex items-center gap-2 sm:gap-3 pr-6 sm:pr-8">
+                  <selected.Icon className="w-5 h-5 sm:w-6 sm:h-6 text-[var(--color-accent)]" />
+                  <p className="font-semibold text-sm sm:text-base">{strings[language].skills.exampleWith} {selected.name}</p>
                 </div>
-                <p className="text-white/80 mt-3">{strings[language].skills.exampleText}</p>
-                <pre className="mt-3 text-xs whitespace-pre-wrap bg-black/30 rounded-xl p-4 overflow-x-auto max-h-[50svh]">
+                <p className="text-white/80 mt-2 sm:mt-3 text-sm sm:text-base">{strings[language].skills.exampleText}</p>
+                <pre className="mt-2 sm:mt-3 text-[10px] sm:text-xs whitespace-pre-wrap bg-black/30 rounded-xl p-3 sm:p-4 overflow-x-auto max-h-[50svh]">
 {`// Exemple: composant animé (simplifié)
 import { motion } from 'framer-motion'
 
