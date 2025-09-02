@@ -41,7 +41,10 @@ const filters = ['Tous', 'Web3', 'UI', 'Full Stack'] as const
 export default function ExperienceProjects() {
   const { language } = useLanguage()
   const data = useData(language)
-  const [expanded, setExpanded] = useState<string | null>((data.experienceEntries as any)[0]?.id ?? null)
+  const firstId = (data.experienceEntries as any)[0]?.id ?? null
+  const [expanded, setExpanded] = useState<string | null>(
+    typeof window !== 'undefined' && window.innerWidth < 640 ? null : firstId
+  )
   const [filter, setFilter] = useState<(typeof filters)[number]>(data.filters[0] as any)
 
   const filtered = useMemo(

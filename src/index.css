@@ -48,7 +48,7 @@ html, body {
 
 /* Section base padding */
 .section {
-  @apply min-h-[100svh] py-24 md:py-32 px-6 md:px-12; 
+  @apply min-h-[100svh] py-16 sm:py-20 md:py-32 px-4 sm:px-6 md:px-12; 
 }
 
 /* Désactivation visuelle des scrollbars partout (navigation gérée en horizontal) */

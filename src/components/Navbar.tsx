@@ -116,11 +116,13 @@ export default function Navbar() {
         </div>
 
         {menuOpen && (
+          <>
+          <div className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden" onClick={() => setMenuOpen(false)} />
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="md:hidden px-4 pb-4"
+            className="relative z-50 md:hidden px-4 pb-4"
           >
             <div className="grid gap-2">
               {sections.map((s) => (
@@ -170,6 +172,7 @@ export default function Navbar() {
               </div>
             </div>
           </motion.div>
+          </>
         )}
       </nav>
     </div>
