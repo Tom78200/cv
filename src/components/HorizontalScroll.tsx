@@ -22,9 +22,11 @@ export default function HorizontalScroll({ children, sectionIds }: Props) {
 
     // Force each panel to exactly full viewport width to have a reliable total width
     const syncSizes = () => {
+      const vw = window.innerWidth
+      const vh = (window as any).visualViewport?.height ?? window.innerHeight
       sections.forEach((el) => {
-        el.style.width = `${window.innerWidth}px`
-        el.style.height = `${window.innerHeight}px`
+        el.style.width = `${vw}px`
+        el.style.height = `${vh}px`
       })
     }
     syncSizes()
