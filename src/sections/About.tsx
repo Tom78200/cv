@@ -15,7 +15,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ amount: 0.3 }}
             transition={{ duration: 0.6 }}
-            className="text-2xl sm:text-4xl md:text-5xl font-bold"
+            className="text-xl sm:text-4xl md:text-5xl font-bold"
           >
             {strings[language].about.title}
           </motion.h2>
@@ -27,29 +27,14 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ amount: 0.3 }}
               transition={{ duration: 0.5, delay: idx * 0.05 }}
-              className="mt-3 sm:mt-5 text-white/80 leading-relaxed text-base sm:text-lg"
+              className="mt-3 sm:mt-5 text-white/80 leading-relaxed text-[15px] sm:text-lg"
             >
               {para}
             </motion.p>
           ))}
         </div>
-
-        <div className="md:col-span-2">
-          <div className="flex flex-wrap gap-3">
-            {strings[language].about.keywords.map((k, i) => (
-              <motion.span
-                key={k}
-                initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ amount: 0.2 }}
-                transition={{ delay: i * 0.04 }}
-                className="glass px-4 py-2 rounded-2xl text-sm text-[var(--color-accent)] shadow-[0_0_15px_rgba(74,144,226,0.2)]"
-              >
-                {k}
-              </motion.span>
-            ))}
-          </div>
-        </div>
+        {/* Colonne droite volontairement vide: suppression des boutons technos */}
+        <div className="md:col-span-2" />
       </div>
     </div>
   )

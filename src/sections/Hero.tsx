@@ -131,12 +131,12 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--color-bg-primary)]" />
       </div>
 
-      {/* Icônes qui orbitent autour du nom */}
-      <div className="absolute inset-0">
-        {orbitingIcons.slice(0, 7).map((item, i) => {
+      {/* Icônes qui orbitent autour du nom (cachées en mobile) */}
+      <div className="absolute inset-0 hidden sm:block">
+        {orbitingIcons.map((item, i) => {
           const base = 280
           const vw = typeof window !== 'undefined' ? window.innerWidth : 1280
-          const radius = vw < 640 ? base * 0.42 : vw < 1024 ? base * 0.75 : base
+          const radius = vw < 1024 ? base * 0.75 : base
           const centerX = 50 // Centre X en pourcentage
           const centerY = 50 // Centre Y en pourcentage
           

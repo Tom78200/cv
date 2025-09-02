@@ -124,6 +124,9 @@ export default function Navbar() {
             exit={{ height: 0, opacity: 0 }}
             className="relative z-50 md:hidden px-4 pb-4"
           >
+            <button aria-label="Fermer" className="absolute right-3 top-3 p-2 text-white/80" onClick={() => setMenuOpen(false)}>
+              <FiX />
+            </button>
             <div className="grid gap-2">
               {sections.map((s) => (
                 <button
