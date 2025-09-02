@@ -110,7 +110,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <button className="md:hidden p-2" onClick={() => setMenuOpen((m) => !m)}>
+          <button className="md:hidden p-2" onClick={() => setMenuOpen((m) => !m)} aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}>
             {menuOpen ? <FiX /> : <FiMenu />}
           </button>
         </div>

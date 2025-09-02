@@ -133,10 +133,10 @@ export default function Hero() {
 
       {/* Icônes qui orbitent autour du nom */}
       <div className="absolute inset-0">
-        {orbitingIcons.map((item, i) => {
+        {orbitingIcons.slice(0, 7).map((item, i) => {
           const base = 280
           const vw = typeof window !== 'undefined' ? window.innerWidth : 1280
-          const radius = vw < 640 ? base * 0.55 : vw < 1024 ? base * 0.8 : base
+          const radius = vw < 640 ? base * 0.42 : vw < 1024 ? base * 0.75 : base
           const centerX = 50 // Centre X en pourcentage
           const centerY = 50 // Centre Y en pourcentage
           

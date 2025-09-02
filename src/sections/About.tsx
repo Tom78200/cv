@@ -27,7 +27,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ amount: 0.3 }}
               transition={{ duration: 0.5, delay: idx * 0.05 }}
-              className="mt-4 sm:mt-6 text-white/80 leading-relaxed text-base sm:text-lg"
+              className="mt-3 sm:mt-5 text-white/80 leading-relaxed text-base sm:text-lg"
             >
               {para}
             </motion.p>
