@@ -85,13 +85,14 @@ export default function HorizontalScroll({ children, sectionIds }: Props) {
         if (!isTouching) return
         const dx = ev.touches[0].clientX - touchStartX
         const dy = ev.touches[0].clientY - touchStartY
-        if (Math.abs(dx) > Math.abs(dy)) {
+        // N'intercepte qu'un geste clairement horizontal
+        if (Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy)) {
           ev.preventDefault()
-          const vw = window.innerWidth || 1
-          const delta = -dx / vw // swipe left moves forward
+          const vw = Math.max(1, window.innerWidth)
+          const delta = -dx / vw
           const nextProgress = Math.min(1, Math.max(0, startProgress + delta))
           const y = containerRef.current!.offsetTop + getTotal() * nextProgress
-          gsap.to(window, { scrollTo: y, duration: 0, ease: 'none' })
+          gsap.set(window, { scrollTo: y })
         }
       }
       const onTouchEnd = () => {
