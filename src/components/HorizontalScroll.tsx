@@ -94,7 +94,7 @@ export default function HorizontalScroll({ children, sectionIds }: Props) {
           gsap.to(window, { scrollTo: y, duration: 0, ease: 'none' })
         }
       }
-      const onTouchEnd = (ev: TouchEvent) => {
+      const onTouchEnd = () => {
         if (!isTouching) return
         const progress = st.progress
         const nearestIndex = Math.round(progress * (sections.length - 1))
