@@ -144,7 +144,7 @@ export default function ExperienceProjects() {
             </ol>
           </div>
 
-          <div className="min-h-0 overflow-hidden flex flex-col">
+          <div className="hidden sm:flex min-h-0 overflow-hidden flex-col">
             <div className="flex flex-wrap gap-2">
               {(data.filters as any).map((f: any) => (
                 <button
