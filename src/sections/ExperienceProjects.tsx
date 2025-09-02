@@ -55,14 +55,14 @@ export default function ExperienceProjects() {
   return (
     <div className="section overflow-hidden">
       <div className="max-w-6xl mx-auto h-full overflow-hidden">
-        <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold">{data.title}</h2>
+        <h2 className="text-xl sm:text-4xl md:text-5xl font-bold">{data.title}</h2>
 
-        <div className="mt-6 sm:mt-10 grid md:grid-cols-2 gap-6 sm:gap-10 h-full overflow-hidden">
+        <div className="mt-5 sm:mt-10 grid md:grid-cols-2 gap-4 sm:gap-10 h-full overflow-hidden">
           <div className="min-h-0 overflow-hidden">
-            <h3 className="text-lg sm:text-xl font-semibold">{data.experiences}</h3>
-            <ol className="relative mt-4 border-s border-white/10 overflow-hidden">
+            <h3 className="text-base sm:text-xl font-semibold">{data.experiences}</h3>
+            <ol className="relative mt-3 sm:mt-4 border-s border-white/10 overflow-hidden">
               {(data.experienceEntries as any).map((e: Entry) => (
-                <li key={e.id} className="ms-6 mb-6">
+                <li key={e.id} className="ms-6 mb-4 sm:mb-6">
                   <span className="absolute -start-3.5 mt-2 size-3 rounded-full bg-[var(--color-accent)]" />
                 <button
                     onClick={() => setExpanded((x) => (x === e.id ? null : e.id))}
@@ -71,7 +71,7 @@ export default function ExperienceProjects() {
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-xs sm:text-sm text-white/60">{e.date}</p>
-                        <p className="text-base sm:text-lg font-semibold">{e.title} {e.company ? `· ${e.company}` : ''}</p>
+                        <p className="text-sm sm:text-lg font-semibold">{e.title} {e.company ? `· ${e.company}` : ''}</p>
                       </div>
                       <span className="text-[var(--color-accent)]">
                         {expanded === e.id ? '−' : '+'}
@@ -86,9 +86,9 @@ export default function ExperienceProjects() {
                           className="overflow-hidden"
                         >
                           <p className="mt-2 sm:mt-3 text-white/80 text-sm sm:text-base">{e.description}</p>
-                          <div className="mt-3 flex flex-wrap gap-2">
+                          <div className="mt-2 sm:mt-3 flex flex-wrap gap-2">
                             {e.tags.map((t) => (
-                              <span key={t} className="glass px-2 py-1 rounded-xl text-xs text-[var(--color-accent)]">
+                              <span key={t} className="glass px-2 py-1 rounded-xl text-[11px] sm:text-xs text-[var(--color-accent)]">
                                 {t}
                               </span>
                             ))}
@@ -101,10 +101,10 @@ export default function ExperienceProjects() {
               ))}
             </ol>
 
-            <h3 className="text-lg sm:text-xl font-semibold mt-8 sm:mt-10">{data.education}</h3>
-            <ol className="relative mt-4 border-s border-white/10 overflow-hidden">
+            <h3 className="text-base sm:text-xl font-semibold mt-6 sm:mt-10">{data.education}</h3>
+            <ol className="relative mt-3 sm:mt-4 border-s border-white/10 overflow-hidden">
               {(data.educationEntries as any).map((e: Entry) => (
-                <li key={e.id} className="ms-6 mb-6">
+                <li key={e.id} className="ms-6 mb-4 sm:mb-6">
                   <span className="absolute -start-3.5 mt-2 size-3 rounded-full bg-[var(--color-accent)]" />
                   <button
                     onClick={() => setExpanded((x) => (x === e.id ? null : e.id))}
@@ -113,7 +113,7 @@ export default function ExperienceProjects() {
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-xs sm:text-sm text-white/60">{e.date}</p>
-                        <p className="text-base sm:text-lg font-semibold">{e.title} {e.company ? `· ${e.company}` : ''}</p>
+                        <p className="text-sm sm:text-lg font-semibold">{e.title} {e.company ? `· ${e.company}` : ''}</p>
                       </div>
                       <span className="text-[var(--color-accent)]">
                         {expanded === e.id ? '−' : '+'}
@@ -128,9 +128,9 @@ export default function ExperienceProjects() {
                           className="overflow-hidden"
                         >
                           <p className="mt-2 sm:mt-3 text-white/80 text-sm sm:text-base">{e.description}</p>
-                          <div className="mt-3 flex flex-wrap gap-2">
+                          <div className="mt-2 sm:mt-3 flex flex-wrap gap-2">
                             {e.tags.map((t) => (
-                              <span key={t} className="glass px-2 py-1 rounded-xl text-xs text-[var(--color-accent)]">
+                              <span key={t} className="glass px-2 py-1 rounded-xl text-[11px] sm:text-xs text-[var(--color-accent)]">
                                 {t}
                               </span>
                             ))}
@@ -150,7 +150,7 @@ export default function ExperienceProjects() {
                 <button
                   key={f}
                   onClick={() => setFilter(f)}
-                  className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl text-sm sm:text-base ${
+                  className={`px-2 sm:px-3 py-1 sm:py-1.5 rounded-xl text-sm sm:text-base ${
                     filter === f
                        ? 'bg-[var(--color-bg-secondary)] text-[var(--color-accent)]'
                       : 'hover:bg-white/5'
@@ -161,7 +161,7 @@ export default function ExperienceProjects() {
               ))}
             </div>
 
-            <motion.div layout className="mt-4 sm:mt-6 grid sm:grid-cols-2 gap-3 sm:gap-4 overflow-hidden">
+            <motion.div layout className="mt-3 sm:mt-6 grid sm:grid-cols-2 gap-2 sm:gap-4 overflow-hidden">
               <AnimatePresence mode="popLayout">
                 {filtered.map((p: any) => (
                   <motion.div
@@ -172,12 +172,12 @@ export default function ExperienceProjects() {
                     exit={{ opacity: 0, scale: 0.95 }}
                     whileHover={{ rotateX: 5, rotateY: -5, scale: 1.02 }}
                     transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-                    className="[transform-style:preserve-3d] glass p-3 sm:p-4 rounded-2xl min-h-28 sm:min-h-32"
+                    className="[transform-style:preserve-3d] glass p-2.5 sm:p-4 rounded-2xl min-h-24 sm:min-h-32"
                   >
                     <div className="pointer-events-none">
-                      <p className="text-base sm:text-lg font-semibold">{p.title}</p>
-                      <p className="text-white/80 mt-1 text-sm sm:text-base">{p.description}</p>
-                      <span className="text-[var(--color-accent)] text-xs sm:text-sm">{p.tag}</span>
+                      <p className="text-sm sm:text-lg font-semibold">{p.title}</p>
+                      <p className="text-white/80 mt-1 text-xs sm:text-base">{p.description}</p>
+                      <span className="text-[var(--color-accent)] text-[11px] sm:text-sm">{p.tag}</span>
                     </div>
                   </motion.div>
                 ))}
