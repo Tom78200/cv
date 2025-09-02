@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { FiX } from 'react-icons/fi'
 import { FaReact, FaNodeJs } from 'react-icons/fa'
 import { SiExpress, SiSolidity, SiSolana, SiEthereum, SiMongodb, SiPostgresql, SiDocker, SiGithub, SiHtml5, SiCss3, SiJavascript, SiTypescript, SiPython, SiTailwindcss } from 'react-icons/si'
+import { useLanguage } from '../context/LanguageContext'
+import { strings } from '../i18n/strings'
 
 type Skill = {
   name: string
@@ -29,13 +31,14 @@ const skills: Skill[] = [
 ]
 
 export default function Skills() {
+  const { language } = useLanguage()
   const [selected, setSelected] = useState<Skill | null>(null)
 
   return (
     <div className="section relative overflow-hidden">
 
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-5xl font-bold">Compétences</h2>
+        <h2 className="text-3xl md:text-5xl font-bold">{strings[language].skills.title}</h2>
 
         <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           {skills.map((s, i) => (
@@ -81,19 +84,15 @@ export default function Skills() {
                 <button
                   onClick={() => setSelected(null)}
                   className="absolute top-3 right-3 p-2 rounded-xl hover:bg-white/10"
-                  aria-label="Fermer"
+                  aria-label={strings[language].skills.close}
                 >
                   <FiX className="w-5 h-5" />
                 </button>
                 <div className="flex items-center gap-3 pr-8">
                   <selected.Icon className="w-6 h-6 text-[var(--color-accent)]" />
-                  <p className="font-semibold">Exemple avec {selected.name}</p>
+                  <p className="font-semibold">{strings[language].skills.exampleWith} {selected.name}</p>
                 </div>
-                <p className="text-white/80 mt-3">
-                  Exemple représentatif: interface animée React + Framer Motion avec transitions de
-                  page, composants réutilisables et micro-interactions. Intégration API Node/Express,
-                  persistance MongoDB/PostgreSQL et déploiement Docker.
-                </p>
+                <p className="text-white/80 mt-3">{strings[language].skills.exampleText}</p>
                 <pre className="mt-3 text-xs whitespace-pre-wrap bg-black/30 rounded-xl p-4 overflow-x-auto max-h-[50svh]">
 {`// Exemple: composant animé (simplifié)
 import { motion } from 'framer-motion'

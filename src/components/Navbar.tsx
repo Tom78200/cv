@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { FiMenu, FiX, FiChevronDown } from 'react-icons/fi'
 import { useLanguage } from '../context/LanguageContext'
+import { strings } from '../i18n/strings'
 // Communique avec HorizontalScroll via CustomEvents
 
 const sections = [
@@ -72,7 +73,9 @@ export default function Navbar() {
                     : 'text-[var(--color-text)]/80 hover:text-[var(--color-text)]'
                 }`}
               >
-                {s.label}
+                {strings[language].nav[
+                  s.id === 'hero' ? 'home' : s.id === 'about' ? 'about' : s.id === 'xp' ? 'experience' : s.id === 'skills' ? 'skills' : 'contact'
+                ]}
               </button>
             ))}
             <div className="relative">
@@ -82,7 +85,7 @@ export default function Navbar() {
                 aria-haspopup="listbox"
                 aria-expanded={langOpen}
               >
-                {language === 'fr' ? 'Français' : 'English'} <FiChevronDown />
+                {language === 'fr' ? strings.fr.nav.languageFr : strings.en.nav.languageEn} <FiChevronDown />
               </button>
               {langOpen && (
                 <div className="absolute right-0 mt-2 w-40 bg-[var(--color-bg-secondary)]/80 backdrop-blur-md rounded-xl border border-white/10 shadow-xl overflow-hidden" role="listbox">
@@ -92,7 +95,7 @@ export default function Navbar() {
                     className={`block w-full text-left px-3 py-2 hover:bg-white/10 ${language === 'fr' ? 'text-[var(--color-accent)]' : 'text-[var(--color-text)]/80'}`}
                     onClick={() => { setLanguage('fr'); setLangOpen(false) }}
                   >
-                    Français
+                    {strings.fr.nav.languageFr}
                   </button>
                   <button
                     role="option"
@@ -100,7 +103,7 @@ export default function Navbar() {
                     className={`block w-full text-left px-3 py-2 hover:bg-white/10 ${language === 'en' ? 'text-[var(--color-accent)]' : 'text-[var(--color-text)]/80'}`}
                     onClick={() => { setLanguage('en'); setLangOpen(false) }}
                   >
-                    English
+                    {strings.en.nav.languageEn}
                   </button>
                 </div>
               )}

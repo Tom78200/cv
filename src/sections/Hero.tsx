@@ -5,6 +5,8 @@ import { motion } from 'framer-motion'
 import { FaReact, FaNodeJs } from 'react-icons/fa'
 import { SiTypescript, SiThreedotjs, SiGreensock, SiNextdotjs, SiTailwindcss, SiFramer, SiSolidity, SiRust, SiSolana } from 'react-icons/si'
 import Typewriter from '../components/Typewriter'
+import { useLanguage } from '../context/LanguageContext'
+import { strings } from '../i18n/strings'
 
 function Stars() {
   const ref = useRef<any>(null)
@@ -33,11 +35,9 @@ function Stars() {
   )
 }
 
-const slogans = [
-  'Entrepreneur en Web 3.0 basé à Paris',
-  'Smart contracts, dApps et expériences immersives',
-  'Full Stack: React, Node.js, Solidity, Solana',
-]
+function useSlogans(lang: 'fr' | 'en') {
+  return strings[lang].hero.slogans
+}
 
 // Icônes SVG qui orbitent autour du nom (logos officiels via react-icons)
 const orbitingIcons = [
@@ -109,14 +109,12 @@ const orbitingIcons = [
   },
 ]
 
-// Statistiques
-const stats = [
-  { label: 'Années d\'expérience', value: 4, suffix: '+' },
-  { label: 'Technologies maîtrisées', value: 15, suffix: '+' },
-]
+// Stat labels moved to i18n
 
 export default function Hero() {
   const [index, setIndex] = useState(0)
+  const { language } = useLanguage()
+  const slogans = useSlogans(language)
 
   useEffect(() => {
     const id = setInterval(() => setIndex((i) => (i + 1) % slogans.length), 5000)
@@ -190,7 +188,7 @@ export default function Hero() {
         >
           <Typewriter text="Tom Cottu" className="text-[var(--color-accent)]" />
           <br />
-          <Typewriter text="Entrepreneur Web 3.0" speed={30} />
+          <Typewriter text={strings[language].hero.title} speed={30} />
         </motion.h1>
 
         <motion.p
@@ -210,7 +208,7 @@ export default function Hero() {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="flex justify-center gap-12 mt-8"
         >
-          {stats.map((stat, i) => (
+          {[{ label: strings[language].hero.statsYears, value: 4, suffix: '+' }, { label: strings[language].hero.statsTechs, value: 15, suffix: '+' }].map((stat, i) => (
             <motion.div
               key={stat.label}
               initial={{ scale: 0 }}
@@ -239,7 +237,7 @@ export default function Hero() {
           transition={{ duration: 2, repeat: Infinity }}
           className="text-white/60 text-sm flex flex-col items-center gap-2"
         >
-          <span>Scroll pour découvrir</span>
+          <span>{strings[language].hero.scroll}</span>
           <span className="text-xl">→</span>
         </motion.div>
       </motion.div>

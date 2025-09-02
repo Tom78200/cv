@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useLanguage } from '../context/LanguageContext'
+import { strings } from '../i18n/strings'
 
 type Entry = {
   id: string
@@ -15,6 +17,19 @@ type Project = {
   title: string
   description: string
   tag: string
+}
+
+function useData(lang: 'fr' | 'en') {
+  const xp = strings[lang].xp
+  return {
+    filters: xp.filters as unknown as (typeof filters)[number][],
+    experienceEntries: xp.experienceEntries as unknown as Entry[],
+    educationEntries: xp.educationEntries as unknown as Entry[],
+    projects: xp.projects as unknown as Project[],
+    title: xp.title,
+    experiences: xp.experiences,
+    education: xp.education,
+  }
 }
 
 const experienceEntries: Entry[] = [
@@ -87,24 +102,26 @@ const projects: Project[] = [
 const filters = ['Tous', 'Web3', 'UI', 'Full Stack'] as const
 
 export default function ExperienceProjects() {
+  const { language } = useLanguage()
+  const data = useData(language)
   const [expanded, setExpanded] = useState<string | null>(experienceEntries[0]?.id ?? null)
-  const [filter, setFilter] = useState<(typeof filters)[number]>('Tous')
+  const [filter, setFilter] = useState<(typeof filters)[number]>(data.filters[0] as any)
 
   const filtered = useMemo(
-    () => (filter === 'Tous' ? projects : projects.filter((p) => p.tag === filter)),
-    [filter]
+    () => (filter === (data.filters[0] as any) ? (data.projects as any) : (data.projects as any).filter((p: any) => p.tag === filter)),
+    [filter, data]
   )
 
   return (
     <div className="section overflow-hidden">
       <div className="max-w-6xl mx-auto h-full overflow-hidden">
-        <h2 className="text-3xl md:text-5xl font-bold">Expériences & Projets</h2>
+        <h2 className="text-3xl md:text-5xl font-bold">{data.title}</h2>
 
         <div className="mt-10 grid md:grid-cols-2 gap-10 h-full overflow-hidden">
           <div className="min-h-0 overflow-hidden">
-            <h3 className="text-xl font-semibold">Expériences</h3>
+            <h3 className="text-xl font-semibold">{data.experiences}</h3>
             <ol className="relative mt-4 border-s border-white/10 overflow-hidden">
-              {experienceEntries.map((e) => (
+              {(data.experienceEntries as any).map((e: Entry) => (
                 <li key={e.id} className="ms-6 mb-6">
                   <span className="absolute -start-3.5 mt-2 size-3 rounded-full bg-[var(--color-accent)]" />
                 <button
@@ -144,9 +161,9 @@ export default function ExperienceProjects() {
               ))}
             </ol>
 
-            <h3 className="text-xl font-semibold mt-10">Formations</h3>
+            <h3 className="text-xl font-semibold mt-10">{data.education}</h3>
             <ol className="relative mt-4 border-s border-white/10 overflow-hidden">
-              {educationEntries.map((e) => (
+              {(data.educationEntries as any).map((e: Entry) => (
                 <li key={e.id} className="ms-6 mb-6">
                   <span className="absolute -start-3.5 mt-2 size-3 rounded-full bg-[var(--color-accent)]" />
                   <button
@@ -189,7 +206,7 @@ export default function ExperienceProjects() {
 
           <div className="min-h-0 overflow-hidden flex flex-col">
             <div className="flex flex-wrap gap-2">
-              {filters.map((f) => (
+              {(data.filters as any).map((f: any) => (
                 <button
                   key={f}
                   onClick={() => setFilter(f)}
@@ -206,7 +223,7 @@ export default function ExperienceProjects() {
 
             <motion.div layout className="mt-6 grid sm:grid-cols-2 gap-4 overflow-hidden">
               <AnimatePresence mode="popLayout">
-                {filtered.map((p) => (
+                {filtered.map((p: any) => (
                   <motion.div
                     key={p.id}
                     layout
